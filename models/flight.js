@@ -1,4 +1,4 @@
-const mongoose = require('moongoose');
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
   const flightSchema = new Schema({
@@ -8,17 +8,17 @@ const Schema = mongoose.Schema;
     },
     airport: { 
       type: String, 
-      enum: [‘AUS’, ‘DFW’, ‘DEN’, ‘LAX’ & ‘SAN’],
+      enum: ['AUS', 'DFW', 'DEN', 'LAX', 'SAN'],
       default: 'DEN',
     },
-    flightNo: {
-      type: number, 
+    flightNum: {
+      type: Number, 
       required: true,
       min: 10,
       max: 9999,
     },
     departs: {
-      type: date,
+      type: Date,
       default: function () {
         return new Date().setFullYear(new Date().getFullYear() + 1);
         },

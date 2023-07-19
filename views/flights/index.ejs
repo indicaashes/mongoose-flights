@@ -1,22 +1,15 @@
 <%- include('../partials/header') %>
 
-<table id="list">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Release<br>Year</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% flights.forEach(function(m) { %>
-      <tr>
-        <td><%= m.title %></td>
-        <td><%= m.releaseYear %></td>
-        <td><a href="/flights/<%= m._id %>">DETAILS</a></td>
-      </tr>
-      <% }); %>
-    </tbody>
-  </table>
+<section id="show-page">
+  <div>Airline: </div>
+  <div><%= flights.airline %></div>
+  <div>Airport: </div>
+  <div><%= flights.airport %></div>
+  <div>Flight Number: </div>
+  <div><%= flights.flightNum %></div>
+  <div>Departure Date/Time: </div>
+  <div><%= flights.depart ? 'Date' : 'Time' %></div>
+  <!-- start cast list -->
+
   
 <%- include('../partials/footer') %>

@@ -3,30 +3,27 @@ const Flight = require('../models/flight');
 module.exports = {
     new: newFlight,
     create,
-    addToCast
+    showFlights,
+    index,
+    
   };
-  
-  async function addToCast(req, res) {
-    const movie = await Movie.findById(req.params.id);
-    // The cast array holds the performer's ObjectId (referencing)
-    movie.cast.push(req.body.performerId);
-    await movie.save();
-    res.redirect(`/movies/${movie._id}`);
+    
+  async function index(req, res) {
+    const flights = await Flight.find({});
+    res.render('flights/index', {title: 'All Flights', flights })
+    }
+
+  async function showFlights(req, res) {
+    const flight = await Flight.findById(req.params.id)
+    res.render('flights/show', {title: 'Flight Details'});
   }
-  
-  async function newPerformer(req, res) {
-    //Sort performers by their name
-    const performers = await Performer.find({}).sort('name');
-    res.render('performers/new', { title: 'Add Performer', performers });
+
+  function newFlight(req, res) {
+    res.render('flights/new', { title: 'Add Flight'});
   }
   
   async function create(req, res) {
- 
-    req.body.born += 'T00:00';
-    try {
-      await Performer.create(req.body);
-    } catch (err) {
-      console.log(err);
-    }
-    res.redirect('/performers/new');
+    let newFlight = await Flight.create(req.body)
+       
+    res.redirect('/flights');
   }
