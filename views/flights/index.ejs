@@ -1,15 +1,33 @@
 <%- include('../partials/header') %>
-
-<section id="show-page">
-  <div>Airline: </div>
-  <div><%= flights.airline %></div>
-  <div>Airport: </div>
-  <div><%= flights.airport %></div>
-  <div>Flight Number: </div>
-  <div><%= flights.flightNum %></div>
-  <div>Departure Date/Time: </div>
-  <div><%= flights.depart ? 'Date' : 'Time' %></div>
-  <!-- start cast list -->
+<h2>Current Flights</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Airline</th>
+      <th>Airport</th>
+      <th>Flight Number</th>
+      <th>Depart</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% flights.forEach(function(m) { %>
+      <tr>
+        <td><a href="/flights/<%= t.id %>"><%= t.airline %></a></td>
+        <td><%= t.airport %></td>
+        <td><%= t.flightNum %></td>
+        <td><%= t.depart %></td>
+        <td><a href="/flights/<%= t._id %>">Flight Details</a></td>
+        <td>
+          <% t.destinations.forEach(destination => { 
+            %> <%= destination.airport %>
+            <%= destination.arrival %>
+            <%
+          }) %>
+        </td>
+      </tr>
+      <% });%>
+    </tbody>
+  </table>
 
   
 <%- include('../partials/footer') %>

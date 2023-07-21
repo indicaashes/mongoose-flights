@@ -1,23 +1,27 @@
 <%- include('../partials/header') %>
+<section id="show-page">
+  <div>Airline: <%= flight.airline %></div>
+  <div>Airport: <%= flight.airport %></div>
+  <div>Flight Number: <%= flight.flightNum %></div>
+  <div>Depart: <%= flight.depart %></div>
+  <!-- flight details list -->
+  <form id="new-form" action="flights/<%= m._id %>/destinations" method="POST">
+    <label>Airport:</label>
+    <select name="airport">
+      <option value="AUS">AUS</option>
+      <option value="DFW">DFW</option>
+      <option value="DEN" selected>DEN</option>
+      <option value="LAX">LAX</option>
+      <option value="SAN">SAN</option>
+    </select>
+    <label>Arrival</label>
+    <input type="datetime-local" id="depart"
+    name="depart" 
+    min="2023-01-07T00:00" max="2024-12-31T00:00">
+    <button type="submit">Save</button>
 
-<table id="list">
-  <thead>
-    <tr>
-      <th>Airline</th>
-      <th>Airport</th>
-      <th>Flight Number</th>
-      <th>Depart</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% flights.forEach(function(m) { %>
-      <tr>
-        <td><%= m.airline %></td>
-        <td><%= m.airport %></td>
-        <td><a href="/flights/<%= m._id %>">DETAILS</a></td>
-      </tr>
-      <% }); %>
-    </tbody>
-  </table>
+  </form>
+
+
   
 <%- include('../partials/footer') %>
