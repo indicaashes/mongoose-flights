@@ -8,7 +8,7 @@ router.get('/:id', flightsCtrl.showFlights);
 router.get('/', flightsCtrl.index);
 router.get('/:id/edit', flightsCtrl.edit);
 router.delete('/:id', flightsCtrl.delete);
-router.post('/:id', destination.newDestination);
+router.post('/:id', flightsCtrl.newDestination);
 router.post('/:id/new', ticket.create);
 router.put('/:id', flightsCtrl.update);
 
